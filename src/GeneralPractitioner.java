@@ -4,6 +4,9 @@ public class GeneralPractitioner extends HealthProfessional {
 
     public GeneralPractitioner(int id, String name, int age, String doctorSpecialization) {
         super(id, name, age);
+        if(doctorSpecialization == null || doctorSpecialization.isEmpty()){
+            throw new IllegalArgumentException("Doctor Specialization cannot be empty and must a string");
+        }
         this.doctorSpecialization = doctorSpecialization;
     }
 
@@ -29,6 +32,9 @@ public class GeneralPractitioner extends HealthProfessional {
     }
 
     public void setDoctorSpecialization(String doctorSpecialization) {
+        if(doctorSpecialization == null || doctorSpecialization.isEmpty()){
+            throw new IllegalArgumentException("Doctor Specialization cannot be empty and must a string");
+        }
         this.doctorSpecialization = doctorSpecialization;
     }
                 

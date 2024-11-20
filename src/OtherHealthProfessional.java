@@ -4,6 +4,9 @@ public class OtherHealthProfessional extends HealthProfessional {
 
     public OtherHealthProfessional(int id, String name, int age, String otherSpecialization) {
         super(id, name, age);
+        if (otherSpecialization == null || otherSpecialization.isEmpty()) {
+            System.err.println("Specialization cannot be empty and must a string");    
+        }
         this.otherSpecialization = otherSpecialization;
     }
 
@@ -29,6 +32,9 @@ public class OtherHealthProfessional extends HealthProfessional {
     }
 
     public void setOtherSpecialization(String newSpecialization) {
+        if (otherSpecialization == null || otherSpecialization.isEmpty()) {
+            System.err.println("Specialization cannot be empty and must a string");    
+        }
         this.otherSpecialization = newSpecialization;
     }    
 
