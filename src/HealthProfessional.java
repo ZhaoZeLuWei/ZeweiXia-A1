@@ -4,9 +4,27 @@ public abstract class HealthProfessional {
     private int age;
 
     public HealthProfessional(int id, String name, int age) {
-        this.id = id;
-        this.name = name;
-        this.age = age;
+        if (id >= 0) {
+            this.id = id;
+        } else  {
+            System.err.printf("Invalid ID: %d, id must be a number greater than or equal to 0", id);
+            return;
+        }
+
+        if (name.length() > 0 && name != null) {
+            this.name = name;
+        } else {
+            System.err.printf("Invalid name: %s, name must be a string with at least one character", name);
+            return;
+        }
+
+        if (age > 0 && age < 150) {
+            this.age = age;
+        } else {
+            System.err.printf("Invalid age: %d, require an integer between 0 and 150", age);
+            return;
+        }
+        
     }
 
     public HealthProfessional() {
@@ -29,15 +47,30 @@ public abstract class HealthProfessional {
     }
 
     public void setId(int inputId) {
-        this.id = inputId;
+        if (inputId >= 0) {
+            this.id = inputId;
+        } else  {
+            System.err.printf("Invalid ID: %d, id must be a number greater than or equal to 0", inputId);
+            return;
+        }
     }
 
     public void setName(String inputName) {
-        this.name = inputName;
+        if (name.length() > 0 && name != null) {
+            this.name = inputName;
+        } else {
+            System.err.printf("Invalid name: %s, name must be a string with at least one character", inputName);
+            return;
+        }
     }
     
     public void setAge(int inputAge) {
-        this.age = inputAge;
+        if (age > 0 && age < 150) {
+            this.age = inputAge;
+        } else {
+            System.err.printf("Invalid age: %d, require an integer between 0 and 150", inputAge);
+            return;
+        }
     }
 
     @Override
