@@ -8,13 +8,35 @@ public class Appointment {
     //abstract class HealthProfessional
     private HealthProfessional healthProfessional;
 
+    //constructor with data validations
     public Appointment(String patientName, String patientPhoneNumber, LocalDateTime appointmentDateTime, HealthProfessional healthProfessional) {
-        this.patientName = patientName;
-        this.patientPhoneNumber = patientPhoneNumber;
-        this.appointmentDateTime = appointmentDateTime;
-        this.healthProfessional = healthProfessional;
-    }
+        if (patientName.length() > 0 ) {
+            this.patientName = patientName;
+        } else {
+            System.err.printf("Invalid patient name: %s, name must be a string with at least one character", patientName);
+        }
+        
+        if (patientPhoneNumber.length() > 5 && patientPhoneNumber.length() < 15) {
+            this.patientPhoneNumber = patientPhoneNumber;
+        } else {
+            System.err.printf("Invalid phone number: %s, phone number must be a string with at least one character", patientPhoneNumber);
+        }
 
+        if(appointmentDateTime.isBefore(LocalDateTime.now())) {
+            System.err.println("Invalid appointment date and time, appointment date and time must be in the future");
+        } else {
+        this.appointmentDateTime = appointmentDateTime;
+        }
+
+        if (healthProfessional instanceof HealthProfessional) {
+            this.healthProfessional = healthProfessional;
+        } else {
+            System.err.println("Input object is not an instance of HealthProfessional");
+        }
+        
+    }
+    
+    //defalut constructor if losing input data
     public Appointment() {
         this.patientName = "No Name";
         this.patientPhoneNumber = "No Phone Number";
@@ -22,6 +44,7 @@ public class Appointment {
         this.healthProfessional = null;
     }
 
+    //getters
     public String getPatientName() {
         return patientName;
     }
@@ -38,22 +61,40 @@ public class Appointment {
         return healthProfessional;
     }
 
+    //setters with data validations
     public void setPatientName(String newName) {
-        this.patientName = newName;
+        if (patientName.length() > 0 ) {
+            this.patientName = newName;
+        } else {
+            System.err.printf("Invalid patient name: %s, name must be a string with at least one character", newName);
+        }
     }
 
     public void setPhoneNumber(String newNumber) {
-        this.patientPhoneNumber = newNumber;
+        if (patientPhoneNumber.length() > 5 && patientPhoneNumber.length() < 15) {
+            this.patientPhoneNumber = newNumber;
+        } else {
+            System.err.printf("Invalid phone number: %s, phone number must be a string with at least one character", newNumber);
+        }
     }
 
     public void setDateTime(LocalDateTime newDateTime) {
+        if(newDateTime.isBefore(LocalDateTime.now())) {
+            System.err.println("Invalid appointment date and time, appointment date and time must be in the future");
+        } else {
         this.appointmentDateTime = newDateTime;
+        }
     }
 
     public void setHealthProfessional(HealthProfessional newHealthProfessional) {
-        this.healthProfessional = newHealthProfessional;
+        if (newHealthProfessional instanceof HealthProfessional) {
+            this.healthProfessional = newHealthProfessional;
+        } else {
+            System.err.println("Input object is not an instance of HealthProfessional");
+        }
     }
 
+    //toString methods to print the details of the appointment
     public String toString() {
         return "Patient Name: " + patientName + "\n" +
                "Patient Phone Number: " + patientPhoneNumber + "\n" +
