@@ -14,16 +14,19 @@ public class Appointment {
             this.patientName = patientName;
         } else {
             System.err.printf("Invalid patient name: %s, name must be a string with at least one character", patientName);
+            throw new IllegalArgumentException("Invalid patient name: " + patientName);
         }
         
         if (patientPhoneNumber.length() > 5 && patientPhoneNumber.length() < 15) {
             this.patientPhoneNumber = patientPhoneNumber;
         } else {
             System.err.printf("Invalid phone number: %s, phone number must be a string with at least one character", patientPhoneNumber);
+            throw new IllegalArgumentException("Invalid phone number: " + patientPhoneNumber);
         }
 
         if(appointmentDateTime.isBefore(LocalDateTime.now())) {
             System.err.println("Invalid appointment date and time, appointment date and time must be in the future");
+            throw new IllegalArgumentException("Invalid appointment date and time: " + appointmentDateTime);
         } else {
         this.appointmentDateTime = appointmentDateTime;
         }
@@ -32,6 +35,7 @@ public class Appointment {
             this.healthProfessional = healthProfessional;
         } else {
             System.err.println("Input object is not an instance of HealthProfessional");
+            throw new IllegalArgumentException("Input object is not an instance of HealthProfessional");
         }
         
     }
